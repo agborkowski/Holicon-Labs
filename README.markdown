@@ -43,6 +43,7 @@ Name convention inspired me from cakephp framework [Inspired by cakephp][100]
 ![extjs mvc filesname][2]
 
 ## application layout
+
 * Viewport
 	* xtype:menusIndex, region: 'west'
 	* xtype:content, region: 'center'
