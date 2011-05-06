@@ -37,7 +37,12 @@ Name convention inspired me from cakephp framework [Inspired by cakephp][100]
 	* Path
 		* controller name, underscored (/app/view/users, /app/view/user_dashboards)
 	* File
-		* action name, camel cased (Users.js, UserDashboards.js)
+		* action name, camel cased (Index.js, UserDashboards.js)
+	* Clases
+		* plurar, camel cased (APP.store.Users, APP.store.UserDashboards)
+
+![extjs mvc filesname][2]
 
 [1]: http://images35.fotosik.pl/650/be678981835da637.jpg
+[2]: http://images41.fotosik.pl/841/8cc231f0d0d6f0d6.jpg
 [100]: http://cakephp.org/files/Resources/CakePHP-1.2-Cheatsheet.pdf
