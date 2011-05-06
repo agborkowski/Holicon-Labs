@@ -35,7 +35,7 @@ Name convention inspired me from cakephp framework [Inspired by cakephp][100]
 		* plurar, camel cased (Users.js, UserDashboards.js)
 * Views
 	* Path
-		controller name, underscored (/app/view/users, /app/view/user_dashboards)
+		* controller name, underscored (/app/view/users, /app/view/user_dashboards)
 	* File
 		* action name, camel cased (Users.js, UserDashboards.js)
 
