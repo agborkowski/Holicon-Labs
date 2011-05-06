@@ -46,7 +46,7 @@ Name convention inspired me from cakephp framework [Inspired by cakephp][100]
 
 * Viewport
 	* xtype:menusIndex, region: 'west'
-	* xtype:content, region: 'center'
+	* xtype:content, region: 'center' (Ext.tab.Panel)
 		* xtype:articlesIndex
 		* xtype:usersIndex
 
