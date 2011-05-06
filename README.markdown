@@ -1,11 +1,10 @@
 # DRAFT DOCUMENT
-@version 0.1
+version 0.1
+author AgBorkowski <andrzejborkowski@gmail.com>
+copyright All rights reserved by **Holicon Sp. z o.o.**
+link http://holicon.pl
 
-@author AgBorkowski <andrzejborkowski@gmail.com>
-
-@copyright All rights reserved by **Holicon Sp. z o.o.**
-
-@link http://holicon.pl
+orginal source code taken from [ExtJs MVC FeedViewer][99]
 
 # Repository guide
 * **extjs-mvc** shows right name convention, and some fixes instead of 
@@ -43,6 +42,14 @@ Name convention inspired me from cakephp framework [Inspired by cakephp][100]
 
 ![extjs mvc filesname][2]
 
+## application layout
+* Viewport
+	* xtype:menusIndex, region: 'west'
+	* xtype:content, region: 'center'
+		* xtype:articlesIndex
+		* xtype:usersIndex
+
 [1]: http://images35.fotosik.pl/650/be678981835da637.jpg
 [2]: http://images41.fotosik.pl/841/8cc231f0d0d6f0d6.jpg
+[99]: http://dev.sencha.com/deploy/ext-4.0.0/examples/app/feed-viewer/feed-viewer.html
 [100]: http://cakephp.org/files/Resources/CakePHP-1.2-Cheatsheet.pdf
