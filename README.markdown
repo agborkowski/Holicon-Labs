@@ -7,4 +7,13 @@
 # Repository guide
 * **extjs-mvc** shows right name convention, and some fixes instead of 
 ExtJs MVC official documentation
+
+# ExtJs MVC
+## name convention
+* folders struct
+** 
+
+###Adding images###
+![alt text][4]
+[4]: http://placehold.it/350x150
  
