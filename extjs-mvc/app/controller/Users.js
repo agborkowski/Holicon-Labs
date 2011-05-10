@@ -5,7 +5,7 @@ Ext.define('FV.controller.Users', {
 	
 	models: ['User'],
 	
-	views: ['users.Grid', 'users.Preview','users.Add'],
+	views: ['users.Grid', 'users.Preview','users.Edit'],
 	
 	refs: [{
 		ref: 'content',
@@ -18,40 +18,32 @@ Ext.define('FV.controller.Users', {
 		xtype: 'usersPreview',
 		closable: true,
 		forceCreate: true,
-		selector: 'users.preview'
+		selector: 'usersPreview'
 	},{
-		ref: 'usersAddFrom', 
-		selector: 'usersAdd form'
+		ref: 'usersEditForm', 
+		selector: 'usersEdit form'
 	},{
-		ref: 'usersAddCombobox', 
-		selector: 'usersAdd combobox'
+		ref: 'usersEditCombobox', 
+		selector: 'usersEdit combobox'
 	},{
 		ref: 'usersGrid', 
 		selector: 'usersGrid'
 	},{
-		ref: 'usersAdd', 
-		selector: 'usersAdd', 
+		ref: 'usersEdit', 
+		selector: 'usersEdit',
 		autoCreate: true,
-		xtype: 'usersAdd'
+		xtype: 'usersEdit'
 	}],
 
 	init: function() {
 		this.control({
 			/*
-			'grid': {
-				selectionchange: this.previewUser
-			},
-			'grid > tableview': {
-				itemdblclick: this.loadUser,
-				refresh: this.selectUser
-			},
+			,
 			'grid button[action=openall]': {
 				click: this.openAllUsers
 			},
 			*/
-			'grid button[action=add]': {
-				click: this.add
-			}
+			
 			/*
 			'grid button[action=remove]': {
 				click: this.remove
@@ -61,14 +53,26 @@ Ext.define('FV.controller.Users', {
 			},
 			'preview button[action=gotouser]': {
 				click: this.open
-			},	
-			'add button[action=submit]': {
+			},
+			*/
+			'usersEdit button[action=submit]': {
 				click: this.submit
 			},
-			'add button[action=reset]': {
-				click: this.reset
+			'usersEdit button[action=reset]': {
+				click: function(){
+					this.getUsersEditForm().getForm().reset();
+				}
+			},
+			'usersGrid': {
+				selectionchange: this.previewUser
+			},
+			'usersGrid > tableview': {
+				itemdblclick: this.edit,
+				refresh: this.selectUser
+			},
+			'usersGrid button[action=add]': {
+				click: this.edit
 			}
-			*/
 		});
 	},
 
@@ -85,7 +89,7 @@ Ext.define('FV.controller.Users', {
      */
 	previewUser: function(grid, users) {
 		var user = users[0],
-		preview = this.getUserPreview();
+		preview = this.getUsersPreview();
 		if (user) {
 			preview.user = user;
 			preview.update(user.data);
@@ -107,15 +111,13 @@ Ext.define('FV.controller.Users', {
 		viewer.add(users);
 		viewer.setActiveTab(users[users.length-1]);
 	},
-
 	view: function(btn) {
 		this.loadUser(null, btn.up('preview').user);
 	},
-
 	/**
-     * Loads the given article into a new tab
-     * @param {FV.model.Article} article The article to load into a new tab
-     */
+	 * Loads the given article into a new tab
+	 * @param {FV.model.Article} article The article to load into a new tab
+	 */
 	loadUser: function(view, user, preventAdd) {
 		var viewer = this.getViewer(),
 		login = user.get('login'),
@@ -136,14 +138,14 @@ Ext.define('FV.controller.Users', {
 	},
 	/*
 	onLaunch: function() {
-		var dataview = this.getUserData(),
-		store = this.getUserStore();
-            
+		var dataview = this.getUsersGrid(),
+		store = this.getUsersStore();
+     console.log(dataview);
+		 console.log(store);
 		dataview.bindStore(store);
 		dataview.getSelectionModel().select(store.getAt(0));
 	},
-   */
-	
+*/	
 	/**
      * Loads the given feed into the viewer
      * @param {FV.model.feed} feed The feed to load
@@ -166,9 +168,13 @@ Ext.define('FV.controller.Users', {
 	/**
      * Shows the add feed dialog window
      */
-	add: function() {
-		alert('how how');
-		this.getAdd().show();
+	edit: function(grid,record) {
+		//var form = this.getUsersEditForm();
+		var view = Ext.widget('usersEdit').show();
+		console.log(record);
+		if(record && record.data){
+			view.down('form').loadRecord(record);
+		}
 	},
     
 	/**
@@ -176,40 +182,27 @@ Ext.define('FV.controller.Users', {
      * @param {FV.model.Feed} feed The feed to remove
      */
 	remove: function() {
-		this.getUserStore().remove(this.getUserData().getSelectionModel().getSelection()[0]);
+		this.getUsersStore().remove(this.getUsersData().getSelectionModel().getSelection()[0]);
 	},
-    
-	/**
-     * @private
-     * Creates a new feed in the store based on a given url. First validates that the feed is well formed
-     * using FV.lib.FeedValidator.
-     * @param {String} name The name of the Feed to create
-     * @param {String} url The url of the Feed to create
-     */
-	submit: function() {
-		var win   = this.getUserWindow(),
-		form  = this.getUserForm(),
-		combo = this.getUserCombo(),
-		store = this.getUserStore(),
-		user  = this.getUserModel().create({
-			name: combo.getDisplayValue(),
-			url: combo.getValue()
-		});
-
-		form.setLoading({
-			msg: 'Validating feed...'
-		});
-        
-		FV.lib.UserValidator.validate(user, {
-			success: function() {
-				store.add(user);
-				form.setLoading(false);
-				win.hide();
-			},
-			failure: function() {
-				form.setLoading(false);
-				form.down('[name=feed]').markInvalid('The URL specified is not a valid RSS2 feed.');
-			}
-		});
+	
+	submit: function(button) {
+		var win    = button.up('window'),
+            form   = win.down('form'),
+            record = form.getRecord(),
+            values = form.getValues();
+				if(record && record.data){
+					console.log('update');
+					console.log('values');
+					record.set(values);
+					//Object { _id="4db5a90748177e5d05000008", login="update", more...}
+				}else{
+					console.log('new');
+					console.log(values);
+					//Object { _id="", login="new", more...}
+					this.getUsersStore().add(values);
+				}
+        win.close();
+        this.getUsersStore().sync();
+				//Object { _id="4db5a87c48177e2507000006", login="ab2", more...}
 	}
 });

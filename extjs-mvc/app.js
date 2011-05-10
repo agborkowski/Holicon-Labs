@@ -2,7 +2,8 @@ Ext.Loader.setConfig({
 	enabled: true
 });
 Ext.Ajax.defaultHeaders = {
-	'Accept': 'application/json'
+	'Accept'         : 'application/json,application/xml',
+	'Content-Type'   : 'application/json'
 };
 Ext.application({
 	name: 'FV',
@@ -13,8 +14,8 @@ Ext.application({
 	},
 	// Define all the controllers that should initialize at boot up of your application
 	controllers: [
-		'Menus',
-		'Articles',
-		'Users'
+	'Menus',
+	'Articles',
+	'Users'
 	]
 });

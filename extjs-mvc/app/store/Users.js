@@ -4,7 +4,7 @@ Ext.define('FV.store.Users', {
 	requires: ['Ext.data.reader.Json'],
 
 	model: 'FV.model.User',
-	autoSync: true,
+	//autoSync: true,
 	remoteSort: true,
 	proxy: {
 		type: 'rest',
