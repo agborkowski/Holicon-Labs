@@ -44,10 +44,11 @@ Ext.define('FV.controller.Users', {
 			},
 			*/
 			
-			/*
-			'grid button[action=remove]': {
+			
+			'usersGrid button[action=remove]': {
 				click: this.remove
 			},
+			/*
 			'preview button[action=viewintab]': {
 				click: this.view
 			},
@@ -182,7 +183,8 @@ Ext.define('FV.controller.Users', {
      * @param {FV.model.Feed} feed The feed to remove
      */
 	remove: function() {
-		this.getUsersStore().remove(this.getUsersData().getSelectionModel().getSelection()[0]);
+		this.getUsersStore().destroy(this.getUsersGrid().getSelectionModel().getSelection()[0]);
+		this.getUsersStore().save();
 	},
 	
 	submit: function(button) {
@@ -194,15 +196,17 @@ Ext.define('FV.controller.Users', {
 					console.log('update');
 					console.log('values');
 					record.set(values);
+					record.save();
+					record.sync();
 					//Object { _id="4db5a90748177e5d05000008", login="update", more...}
 				}else{
 					console.log('new');
 					console.log(values);
 					//Object { _id="", login="new", more...}
 					this.getUsersStore().add(values);
+					this.getUsersStore().save();
 				}
         win.close();
-        this.getUsersStore().sync();
 				//Object { _id="4db5a87c48177e2507000006", login="ab2", more...}
 	}
 });

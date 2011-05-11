@@ -47,8 +47,8 @@ Ext.define('FV.view.users.Grid', {
 					xtype: 'button',
 					text: 'Delete',
 					iconCls: 'ico menu delete',
-					disabled: true,
-					action: 'delete'
+					//disabled: true,
+					action: 'remove'
 				},{
 					text: 'Open All',
 					action: 'openall'
