@@ -1,9 +1,9 @@
-Ext.define('FV.store.Articles', {
+Ext.define('APP.store.Articles', {
 	extend: 'Ext.data.Store',
 
 	requires: ['Ext.data.reader.Xml'],
 
-	model: 'FV.model.Article',
+	model: 'APP.model.Article',
 
 	proxy: {
 		type: 'ajax',

@@ -1,4 +1,4 @@
-Ext.define('FV.view.articles.Grid', {
+Ext.define('APP.view.articles.Grid', {
 	extend: 'Ext.grid.Panel',
 	alias: 'widget.articlesGrid',
 

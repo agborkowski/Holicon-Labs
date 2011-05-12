@@ -1,4 +1,4 @@
-Ext.define('FV.controller.Articles', {
+Ext.define('APP.controller.Articles', {
 	extend: 'Ext.app.Controller',
 
 	stores: ['Articles'],
@@ -54,7 +54,7 @@ Ext.define('FV.controller.Articles', {
 
 	/**
      * Loads the given article into the preview panel
-     * @param {FV.model.Article} article The article to load
+     * @param {APP.model.Article} article The article to load
      */
 	previewArticle: function(grid, articles) {
 		var article = articles[0],
@@ -69,15 +69,15 @@ Ext.define('FV.controller.Articles', {
 	openArticle: function(btn) {
 		window.open(btn.up('articlepreview').article.get('link'));
 	},
-    
+
 	openAllArticles: function() {
 		var articles = [],
 		viewer = this.getViewer();
-            
+
 		this.getArticlesStore().each(function(article) {
 			articles.push(this.loadArticle(null, article, true));
 		}, this);
-        
+
 		viewer.add(articles);
 		viewer.setActiveTab(articles[articles.length-1]);
 	},
@@ -89,13 +89,13 @@ Ext.define('FV.controller.Articles', {
 
 	/**
      * Loads the given article into a new tab
-     * @param {FV.model.Article} article The article to load into a new tab
+     * @param {APP.model.Article} article The article to load into a new tab
      */
 	loadArticle: function(view, article, preventAdd) {
 		var viewer = this.getViewer(),
 		title = article.get('title'),
 		articleId = article.id;
-            
+
 		tab = viewer.down('[articleId=' + articleId + ']');
 		if (!tab) {
 			tab = this.getArticleTab();
@@ -108,9 +108,9 @@ Ext.define('FV.controller.Articles', {
 		tab.update(article.data);
 
 		if (preventAdd !== true) {
-			viewer.add(tab);          
-			viewer.setActiveTab(tab);  
-		}   
+			viewer.add(tab);
+			viewer.setActiveTab(tab);
+		}
 		return tab;
 	}
 });

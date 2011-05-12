@@ -1,4 +1,4 @@
-Ext.define('FV.lib.FeedValidator', {
+Ext.define('APP.lib.FeedValidator', {
     singleton: true,
     
     /**
@@ -8,7 +8,7 @@ Ext.define('FV.lib.FeedValidator', {
     
     /**
      * Validates a given feed's formating by fetching it and ensuring it is well formed
-     * @param {FV.model.Feed} feed The feed to validate
+     * @param {APP.model.Feed} feed The feed to validate
      */
     validate: function(feed, options) {
         options = options || {};

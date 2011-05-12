@@ -1,7 +1,7 @@
-Ext.define('FV.store.Menus', {
+Ext.define('APP.store.Menus', {
     extend: 'Ext.data.Store',
 
-    model: 'FV.model.Menu',
+    model: 'APP.model.Menu',
 
     data: [
         {name: 'Sencha Blog',   url: 'http://feeds.feedburner.com/extblog'},

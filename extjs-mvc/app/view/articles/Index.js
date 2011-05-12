@@ -1,4 +1,4 @@
-Ext.define('FV.view.articles.Index', {
+Ext.define('APP.view.articles.Index', {
 	extend: 'Ext.panel.Panel',
 	alias: 'widget.articlesIndex',
 

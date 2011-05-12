@@ -1,4 +1,4 @@
-Ext.define('FV.view.users.Preview', {
+Ext.define('APP.view.users.Preview', {
 	extend: 'Ext.panel.Panel',
 	alias: 'widget.usersPreview',
 

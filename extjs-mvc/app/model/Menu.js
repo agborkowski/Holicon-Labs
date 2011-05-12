@@ -1,4 +1,4 @@
-Ext.define('FV.model.Menu', {
+Ext.define('APP.model.Menu', {
     extend: 'Ext.data.Model',
     
     proxy: {

@@ -1,4 +1,4 @@
-Ext.define('FV.view.users.Edit', {
+Ext.define('APP.view.users.Edit', {
 	extend: 'Ext.window.Window',
 	alias: 'widget.usersEdit',
 	requires: ['Ext.form.Panel', 'Ext.form.field.ComboBox'],

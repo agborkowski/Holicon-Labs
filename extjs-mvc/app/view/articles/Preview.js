@@ -1,4 +1,4 @@
-Ext.define('FV.view.articles.Preview', {
+Ext.define('APP.view.articles.Preview', {
 	extend: 'Ext.panel.Panel',
 	alias: 'widget.articlesPreview',
 	requires: ['Ext.toolbar.Toolbar'],

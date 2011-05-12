@@ -1,4 +1,4 @@
-Ext.define('FV.controller.Users', {
+Ext.define('APP.controller.Users', {
 	extend : 'Ext.app.Controller',
 
 	stores : [ 'Users' ],
@@ -79,7 +79,7 @@ Ext.define('FV.controller.Users', {
 	/**
 	 * Loads the given article into the preview panel
 	 * 
-	 * @param {FV.model.Article}
+	 * @param {APP.model.Article}
 	 *          article The article to load
 	 */
 	previewUser : function(grid, users) {
@@ -110,7 +110,7 @@ Ext.define('FV.controller.Users', {
 	/**
 	 * Loads the given article into a new tab
 	 * 
-	 * @param {FV.model.Article}
+	 * @param {APP.model.Article}
 	 *          article The article to load into a new tab
 	 */
 	loadUser : function(view, user, preventAdd) {
@@ -138,7 +138,7 @@ Ext.define('FV.controller.Users', {
 	/**
 	 * Loads the given feed into the viewer
 	 * 
-	 * @param {FV.model.feed}
+	 * @param {APP.model.feed}
 	 *          feed The feed to load
 	 * 
 	 * loadFeed: function(selModel, selected) { var grid = this.getArticleGrid(),
@@ -162,28 +162,26 @@ Ext.define('FV.controller.Users', {
 	/**
 	 * Removes the given feed from the Feeds store
 	 * 
-	 * @param {FV.model.Feed}
+	 * @param {APP.model.Feed}
 	 *          feed The feed to remove
 	 */
 	remove : function() {
-		this.getUsersStore().destroy(this.getUsersGrid().getSelectionModel().getSelection()[0]);
-		//this.getUsersStore().save();
+		this.getUsersStore().remove(this.getUsersGrid().getSelectionModel().getSelection()[0]);
+		//this.getUsersStore().save(); @todo delete, autoSync work
 	},
 
 	submit : function(button) {
-		var win = button.up('window'), form = win.down('form'), record = form.getRecord(), values = form.getValues();
+		var win = button.up('window'), form = win.down('form'), 
+		record = form.getRecord(), values = form.getValues(), usersStore = this.getUsersStore();
 		if (record && record.data) {
 			console.log('update');
 			console.log('values');
 			record.set(values);
-			record.sync();
-			// Object { _id="4db5a90748177e5d05000008", login="update", more...}
 		} else {
 			console.log('new');
 			console.log(values);
 			// Object { _id="", login="new", more...}
-			this.getUsersStore().add(values);
-			this.getUsersStore().save();
+			usersStore.insert(0,values);
 		}
 		win.close();
 		// Object { _id="4db5a87c48177e2507000006", login="ab2", more...}

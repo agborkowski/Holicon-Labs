@@ -1,4 +1,4 @@
-Ext.define('FV.view.menus.Add', {
+Ext.define('APP.view.menus.Add', {
 	extend: 'Ext.window.Window',
 
 	alias: 'widget.menusAdd',

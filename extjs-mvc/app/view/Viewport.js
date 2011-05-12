@@ -1,10 +1,10 @@
-Ext.define('FV.view.Viewport', {
+Ext.define('APP.view.Viewport', {
 	extend: 'Ext.container.Viewport',
 
 	requires: [
-	'FV.view.Content',
-	'FV.view.menus.Index',
-	'Ext.layout.container.Border'
+		'APP.view.Content',
+		'APP.view.menus.Index',
+		'Ext.layout.container.Border'
 	],
 
 	layout: 'border',
@@ -12,7 +12,7 @@ Ext.define('FV.view.Viewport', {
 	items: [{
 		region: 'center',
 		xtype: 'content'
-	}, {
+	},{
 		region: 'west',
 		width: 225,
 		xtype: 'menusIndex'

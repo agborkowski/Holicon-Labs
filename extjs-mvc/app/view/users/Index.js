@@ -1,9 +1,9 @@
-Ext.define('FV.view.users.Index', {
+Ext.define('APP.view.users.Index', {
 	extend: 'Ext.panel.Panel',
 	alias: 'widget.usersIndex',
 	requires: [
-		'FV.view.users.Grid',
-		'FV.view.users.Preview'
+		'APP.view.users.Grid',
+		'APP.view.users.Preview'
 	],
 	closable: true,
 	iconCls: 'users index',

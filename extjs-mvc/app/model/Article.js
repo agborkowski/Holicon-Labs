@@ -1,4 +1,4 @@
-Ext.define('FV.model.Article', {
+Ext.define('APP.model.Article', {
 	extend: 'Ext.data.Model',
     
 	fields: [

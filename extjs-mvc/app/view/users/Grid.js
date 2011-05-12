@@ -1,4 +1,4 @@
-Ext.define('FV.view.users.Grid', {
+Ext.define('APP.view.users.Grid', {
 	extend: 'Ext.grid.Panel',
 	alias: 'widget.usersGrid',
 	cls: 'users grid',
@@ -28,7 +28,13 @@ Ext.define('FV.view.users.Grid', {
 				//hidden: true,
 				width: 200
 			}],
-		
+			
+			selModel: {
+				selType:'rowmodel'
+				,allowDeselect:true
+				,mode:'MULTI'
+			},
+			
 			dockedItems:[{
 				xtype: 'toolbar',
 				dock: 'top',

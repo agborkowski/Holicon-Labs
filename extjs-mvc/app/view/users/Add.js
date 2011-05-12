@@ -1,4 +1,4 @@
-Ext.define('FV.view.users.Add', {
+Ext.define('APP.view.users.Add', {
 	extend: 'Ext.window.Window',
 
 	alias: 'widget.usersAdd',

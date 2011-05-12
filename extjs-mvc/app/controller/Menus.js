@@ -1,4 +1,4 @@
-Ext.define('FV.controller.Menus', {
+Ext.define('APP.controller.Menus', {
 	extend: 'Ext.app.Controller',
 	stores: ['Menus', 'Articles'],
 	models: ['Menu'],
@@ -26,7 +26,7 @@ Ext.define('FV.controller.Menus', {
 		xtype: 'menusAdd'
 	}], 
 	
-	requires: ['FV.lib.FeedValidator'],
+	requires: ['APP.lib.FeedValidator'],
 
 	// At this point things haven't rendered yet since init gets called on controllers before the launch function
 	// is executed on the Application
@@ -56,7 +56,7 @@ Ext.define('FV.controller.Menus', {
     
 	/**
 	 * Loads the given feed into the viewer
-	 * @param {FV.model.feed} feed The feed to load
+	 * @param {APP.model.feed} feed The feed to load
 	 */
 	load: function(selModel, selected) {
 		var grid = this.getArticlesGrid(),
@@ -81,7 +81,7 @@ Ext.define('FV.controller.Menus', {
     
 	/**
      * Removes the given feed from the Feeds store
-     * @param {FV.model.Feed} feed The feed to remove
+     * @param {APP.model.Feed} feed The feed to remove
      */
 	remove: function() {
 		this.getMenusStore().remove(this.getMenusPanelDataview().getSelectionModel().getSelection()[0]);
@@ -90,7 +90,7 @@ Ext.define('FV.controller.Menus', {
 	/**
      * @private
      * Creates a new feed in the store based on a given url. First validates that the feed is well formed
-     * using FV.lib.FeedValidator.
+     * using APP.lib.FeedValidator.
      * @param {String} name The name of the Feed to create
      * @param {String} url The url of the Feed to create
      */
@@ -108,7 +108,7 @@ Ext.define('FV.controller.Menus', {
 			msg: 'Validating feed...'
 		});
         
-		FV.lib.FeedValidator.validate(feed, {
+		APP.lib.FeedValidator.validate(feed, {
 			success: function() {
 				store.add(feed);
 				form.setLoading(false);
