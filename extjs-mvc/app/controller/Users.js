@@ -40,7 +40,6 @@ Ext.define('APP.controller.Users', {
 			/*
 			 * , 'grid button[action=openall]': { click: this.openAllUsers },
 			 */
-
 			'usersGrid button[action=remove]' : {
 				click : this.remove
 			},
@@ -57,30 +56,41 @@ Ext.define('APP.controller.Users', {
 				}
 			},
 			'usersGrid' : {
-				selectionchange : this.previewUser
+				selectionchange : this.previewUser,
+				render: this.onUsersRender
 			},
 			'usersGrid > tableview' : {
 				itemdblclick : this.edit,
-				refresh : this.selectUser
+				refresh : this.onUsersSelect
 			},
 			'usersGrid button[action=add]' : {
 				click : this.edit
 			}
 		});
 	},
-
-	selectUser : function(view) {
+	onViewClick : function(btn) {
+		this.view(null, btn.up('preview').user);
+	},
+	onLaunch: function() {
+		var grid = this.getUsersGrid(), store = this.getUsersStore();
+		grid.getSelectionModel().select(store.getAt(0));
+	},
+	onUsersSelect : function(view) {
 		var first = this.getUsersStore().getAt(0);
 		if (first) {
 			view.getSelectionModel().select(first);
 		}
 	},
-
 	/**
-	 * Loads the given article into the preview panel
-	 * 
-	 * @param {APP.model.Article}
-	 *          article The article to load
+     * Loads data to store (latly binding)
+     */
+	onUsersRender: function() {
+		var grid = this.getUsersGrid(),
+		store = this.getUsersStore();
+		store.load();
+	},
+	/**
+	 * Loads the given user into the preview panel
 	 */
 	previewUser : function(grid, users) {
 		var user = users[0], preview = this.getUsersPreview();
@@ -104,20 +114,15 @@ Ext.define('APP.controller.Users', {
 		viewer.add(users);
 		viewer.setActiveTab(users[users.length - 1]);
 	},
-	view : function(btn) {
-		this.loadUser(null, btn.up('preview').user);
-	},
+
 	/**
-	 * Loads the given article into a new tab
-	 * 
-	 * @param {APP.model.Article}
-	 *          article The article to load into a new tab
+	 * Loads the given user into a new tab
 	 */
-	loadUser : function(view, user, preventAdd) {
-		var viewer = this.getViewer(), login = user.get('login'), userId = user.id;
+	view : function(view, user, preventAdd) {
+		var viewer = this.getContent(), login = user.get('login'), userId = user.id;
 		tab = viewer.down('[userId=' + userId + ']');
 		if (!tab) {
-			tab = this.getUserTab();
+			tab = this.getContent();
 		}
 		tab.setTitle(login);
 		tab.user = user;
@@ -129,26 +134,8 @@ Ext.define('APP.controller.Users', {
 		}
 		return tab;
 	},
-	/*
-	 * onLaunch: function() { var dataview = this.getUsersGrid(), store =
-	 * this.getUsersStore(); console.log(dataview); console.log(store);
-	 * dataview.bindStore(store);
-	 * dataview.getSelectionModel().select(store.getAt(0)); },
-	 */
 	/**
-	 * Loads the given feed into the viewer
-	 * 
-	 * @param {APP.model.feed}
-	 *          feed The feed to load
-	 * 
-	 * loadFeed: function(selModel, selected) { var grid = this.getArticleGrid(),
-	 * store = this.getArticlesStore(), feed = selected[0];
-	 * 
-	 * if (feed) { grid.enable(); store.load({ params: { feed: feed.get('url') }
-	 * }); } },
-	 */
-	/**
-	 * Shows the add feed dialog window
+	 * Shows edit dialog window
 	 */
 	edit : function(grid, record) {
 		// var form = this.getUsersEditForm();
@@ -160,30 +147,22 @@ Ext.define('APP.controller.Users', {
 	},
 
 	/**
-	 * Removes the given feed from the Feeds store
-	 * 
-	 * @param {APP.model.Feed}
-	 *          feed The feed to remove
+	 * Removes the selected record
 	 */
 	remove : function() {
-		this.getUsersStore().remove(this.getUsersGrid().getSelectionModel().getSelection()[0]);
-		//this.getUsersStore().save(); @todo delete, autoSync work
+		var sm = this.getUsersGrid().getSelectionModel(), records = sm.getSelection();
+		sm.deselectAll();
+		this.getUsersStore().remove(records);
 	},
 
 	submit : function(button) {
-		var win = button.up('window'), form = win.down('form'), 
+		var win = button.up('window'), form = win.down('form'),
 		record = form.getRecord(), values = form.getValues(), usersStore = this.getUsersStore();
 		if (record && record.data) {
-			console.log('update');
-			console.log('values');
-			record.set(values);
+			form.getForm().updateRecord(record);
 		} else {
-			console.log('new');
-			console.log(values);
-			// Object { _id="", login="new", more...}
 			usersStore.insert(0,values);
 		}
 		win.close();
-		// Object { _id="4db5a87c48177e2507000006", login="ab2", more...}
 	}
 });

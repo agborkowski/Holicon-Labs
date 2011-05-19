@@ -1,6 +1,7 @@
 Ext.define('APP.view.users.Index', {
 	extend: 'Ext.panel.Panel',
 	alias: 'widget.usersIndex',
+	title: 'Users',
 	requires: [
 		'APP.view.users.Grid',
 		'APP.view.users.Preview'

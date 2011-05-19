@@ -28,13 +28,15 @@ Ext.define('APP.view.users.Grid', {
 				//hidden: true,
 				width: 200
 			}],
-			
+
 			selModel: {
 				selType:'rowmodel'
-				,allowDeselect:true
-				,mode:'MULTI'
+				,
+				allowDeselect:true
+				,
+				mode:'MULTI'
 			},
-			
+
 			dockedItems:[{
 				xtype: 'toolbar',
 				dock: 'top',
@@ -60,10 +62,10 @@ Ext.define('APP.view.users.Grid', {
 					action: 'openall'
 				}]
 			},{
-          xtype: 'pagingtoolbar',
-          store: 'Users',
-					dock: 'bottom'
-          //,displayInfo: true
+				xtype: 'pagingtoolbar',
+				store: 'Users',
+				dock: 'bottom'
+			//,displayInfo: true
 			}]
 		});
 
