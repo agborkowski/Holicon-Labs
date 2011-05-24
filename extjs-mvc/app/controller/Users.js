@@ -71,10 +71,12 @@ Ext.define('APP.controller.Users', {
 	onViewClick : function(btn) {
 		this.view(null, btn.up('preview').user);
 	},
+	/*
 	onLaunch: function() {
 		var grid = this.getUsersGrid(), store = this.getUsersStore();
 		grid.getSelectionModel().select(store.getAt(0));
 	},
+	*/
 	onUsersSelect : function(view) {
 		var first = this.getUsersStore().getAt(0);
 		if (first) {

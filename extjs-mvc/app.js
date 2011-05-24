@@ -21,6 +21,7 @@ Ext.application({
 		//'Menus', // @todo move to viewport @todo delete
 		//'Articles',
 		'Users',
+		'Messages',
 		'Viewport'
 	]
 });

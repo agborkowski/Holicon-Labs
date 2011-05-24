@@ -2,9 +2,10 @@ Ext.define('APP.view.Viewport', {
 	extend: 'Ext.container.Viewport',
 	alias: 'widget.MainViewport',
 	layout: 'border',
-	//@todo late state binding for views
+	//@todo delete and late state binding for views requiers
 	requires: [
 		'APP.view.users.Index',
+		'APP.view.messages.Index',
 	],
 	items: [{
 		xtype: 'panel',
@@ -214,7 +215,7 @@ Ext.define('APP.view.Viewport', {
 				text: 'Users',
 				user: "user",
 				status: "status",
-				id: 'usersIndex',
+				//id: 'usersIndex',
 				openTab: 'usersIndex',
 				leaf: true
 			//href: '#/users',
@@ -236,7 +237,7 @@ Ext.define('APP.view.Viewport', {
 			//editable: false
 			}, {
 				text: 'Messages',
-				action: '#/messages/index',
+				openTab: 'messagesIndex',
 				leaf: true
 			}]
 		}

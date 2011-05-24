@@ -55,9 +55,10 @@ Ext.define('APP.controller.Viewport', {
 		Ext.each([this.getMenu(), this.getNavigation()], function(panel){
 			if(btn.pressed){
 				panel.collapse(0,true);
+				console.log('exec: '+panel.id+'.onFullscreenClick.collapse(0,true)');
 			}else{
-				panel.expand(true);
-				console.log(panel);
+				Ext.Function.defer(panel.expand, 2000, panel, [true]);
+				console.log('exec: '+panel.id+'.Ext.Function.defer(panel.expand, 2000, panel, [true])');
 			}
 		});
 		if(btn.pressed){
