@@ -29,6 +29,7 @@ Ext.application({
 	paths: {
 		'Ext.ux': '/js/ext4/examples/ux'
 	},
+	//autoCreateViewport: true, @deleted
 	controllers: [
 	//'Menus', // @todo move to viewport @todo delete
 	//'Articles',

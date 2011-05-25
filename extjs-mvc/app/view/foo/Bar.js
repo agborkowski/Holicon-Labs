@@ -1,4 +1,4 @@
-Ext.define('App.view.foo.Bar' ,{
+Ext.define('APP.view.foo.Bar' ,{
     extend: 'Ext.panel.Panel',
 
     height: 200,

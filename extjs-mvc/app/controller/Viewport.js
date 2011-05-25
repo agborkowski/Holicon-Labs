@@ -27,7 +27,7 @@ Ext.define('APP.controller.Viewport', {
 				click: this.onFullscreenClick
 			},
 			'#navigation': {
-				itemclick: this.onNavigationClick
+				//itemclick: this.onNavigationClick
 			}
 		});
 	},
