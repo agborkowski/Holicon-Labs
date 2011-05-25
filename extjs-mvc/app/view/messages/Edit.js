@@ -5,9 +5,10 @@ Ext.define('APP.view.messages.Edit', {
 
 	requires: ['Ext.form.Panel', 'Ext.form.field.ComboBox'],
 
-	method: [
+	type: [
 		['sms', 'sms'],
-		['email', 'e-mail']
+		['email', 'e-mail'],
+		['alert', 'alert']
 	],
 	title: 'Message',
 	closeAction: 'hide',
@@ -47,32 +48,34 @@ Ext.define('APP.view.messages.Edit', {
 					defaults: {
 						'allowBlank': false
 					},
-					items: [{
-						xtype: 'textfield',
-						fieldLabel: 'To',
-						anchor: '100%',
-						name: 'reciver'
-					},{
-						xtype: 'textfield',
-						fieldLabel: 'Title',
-						anchor: '100%',
-						name: 'title'
-						//inputType: 'password'
-					},{
-						xtype: 'textarea',
-						fieldLabel: 'Message',
-						anchor: '100%',
-						name: 'message'
-						//inputType: 'password'
-					},{
-						itemId: 'method',
-						fieldLabel: 'Method',
-						xtype: 'combo',
-						store: this.method,
-						getInnerTpl: function() {
-							return '<div class="message-key">{field1}</div><div class="message-val">{field2}</div>';
+					items: [
+						{
+							xtype: 'combo',
+							fieldLabel: 'Type',
+							store: this.type,
+							getInnerTpl: function() {
+								return '<div class="message-key">{field1}</div><div class="message-val">{field2}</div>';
+							},
+							name: 'type'
+						},{
+							xtype: 'textfield',
+							fieldLabel: 'To',
+							anchor: '100%',
+							name: 'reciver'
+						},{
+							xtype: 'textfield',
+							fieldLabel: 'Title',
+							anchor: '100%',
+							name: 'title'
+							//inputType: 'password'
+						},{
+							xtype: 'textarea',
+							fieldLabel: 'Message',
+							anchor: '100%',
+							name: 'message'
+							//inputType: 'password'
 						}
-					}]
+					]
 				}]
 			}]
 		});

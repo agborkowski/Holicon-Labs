@@ -1,12 +1,21 @@
+/**
+ * Border layout for application
+ * `north` #menu is a application menu with toolbars
+ * `west` #navifgation with treee panel and observable click ndoes
+ * `center` #content panel to load content in tabs
+ */
 Ext.define('APP.view.Viewport', {
 	extend: 'Ext.container.Viewport',
 	alias: 'widget.MainViewport',
 	layout: 'border',
+	id: 'app-viewport',
 	//@todo delete and late state binding for views requiers
+	/*
 	requires: [
-		'APP.view.users.Index',
-		'APP.view.messages.Index',
+	'APP.view.users.Index',
+	'APP.view.messages.Index',
 	],
+	*/
 	items: [{
 		xtype: 'panel',
 		id: 'menu',
@@ -238,7 +247,19 @@ Ext.define('APP.view.Viewport', {
 			}, {
 				text: 'Messages',
 				openTab: 'messagesIndex',
-				leaf: true
+				leaf: false,
+				expanded: true,
+				children: [{
+					text: 'inbox',
+					openTab: 'messagesIndex',
+					leaf: true
+				},{
+					text: 'outbox',
+					leaf: true
+				},{
+					text: 'alerts',
+					leaf: true
+				}]
 			}]
 		}
 	},{
@@ -264,5 +285,27 @@ Ext.define('APP.view.Viewport', {
 		xtype: 'container',
 		region: 'south',
 		height: 25
-	}]
+	}],
+
+	changeView: function(view) {
+		var me = this,
+		container = me.down('content');
+
+		container.removeAll();
+		me.addView(view);
+	},
+
+	addView: function(view) {
+		var me = this,
+		container = me.down('content');
+
+		container.add(view);
+	},
+
+	hasView: function(selector) {
+		var me = this,
+		container = me.down('content');
+
+		return (container.child(selector) != null);
+	}
 });

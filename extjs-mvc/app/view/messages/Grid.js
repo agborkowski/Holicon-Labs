@@ -18,20 +18,22 @@ Ext.define('APP.view.messages.Grid', {
 			},
 
 			columns: [{
-				text: 'Title',
-				dataIndex: 'title'
+				text: 'Type',
+				dataIndex: 'type'
 				//flex: 1,
 				//renderer: this.formatTitle
 			}, {
-				text: 'Message',
-				dataIndex: 'message',
+				text: 'Reciver',
+				dataIndex: 'reciver'
 				//hidden: true,
-				width: 200
 			}, {
-				text: 'Status',
-				dataIndex: 'status',
+				text: 'Title',
+				dataIndex: 'title'
 				//hidden: true,
-				width: 200
+			}, {
+				text: 'Message',
+				dataIndex: 'message'
+				//hidden: true,
 			}],
 
 			selModel: {
