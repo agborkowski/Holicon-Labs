@@ -11,7 +11,6 @@ Ext.Loader.setConfig({
 		'Util': '/js/main/app/util'
 	}
 });
-// This is a simple somment added by me.
 // initialize utils
 Util = {};
 
