@@ -23,7 +23,7 @@ Ext.Ajax.defaultHeaders = {
 	'Content-Type' : 'application/json'
 //,'Accept-Charset' : 'utf-8'
 };
-
+// comment for task-3
 Ext.application({
 	name: 'APP',
 	appFolder: '/js/main/app',
