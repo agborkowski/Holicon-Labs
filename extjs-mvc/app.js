@@ -96,6 +96,7 @@ Ext.application({
 		// edit 4 kaktus
 		// edit 4 kaktus
 		// edit 4 kaktus
+		//task-5-ab2
 		// edit 4 kaktus
 		// edit 4 kaktus
 		// this determines if the controller was loaded while running the app
