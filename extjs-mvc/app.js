@@ -12,6 +12,7 @@ Ext.Loader.setConfig({
 	}
 });
 // This is a simple somment added by me.
+// comment form task 2
 // initialize utils
 Util = {};
 
