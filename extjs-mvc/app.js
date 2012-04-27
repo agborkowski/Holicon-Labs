@@ -25,6 +25,7 @@ Ext.Ajax.defaultHeaders = {
 //,'Accept-Charset' : 'utf-8'
 };
 // comment for task-3
+// kaktus// kaktus// kaktus
 Ext.application({
 	name: 'APP',
 	appFolder: '/js/main/app',
@@ -86,6 +87,8 @@ Ext.application({
 		};
 		// check if application was launched before
 		// this determines if the controller was loaded while running the app
+		//  kaktus
+		// kaktus
 		if(me.launched) {
 			// if the application was launched, call the onLaunch manually
 			controller.onLaunch();
@@ -93,6 +96,9 @@ Ext.application({
 	},
 	getViewport: function() {
 		return Ext.getCmp('app-viewport');
+		// kaktus
+		// kaktus// kaktus
+		// kaktus// kaktus// kaktus// kaktus// kaktus
 	},
 	initializeUtils: function() {
 		Ext.apply(Util, {
