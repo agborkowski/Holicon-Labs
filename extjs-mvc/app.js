@@ -25,6 +25,7 @@ Ext.Ajax.defaultHeaders = {
 //,'Accept-Charset' : 'utf-8'
 };
 // comment for task-3
+// kaktus// kaktus// kaktus
 // comment for task-4-ab
 // comment for task-5-ab
 // comment for task-6-ab
@@ -34,6 +35,7 @@ Ext.application({
 	paths: {
 		'Ext.ux': '/js/ext4/examples/ux'
 	},
+	//edit 3 kaktus
 	//autoCreateViewport: true, @deleted
 	controllers: [
 	//'Menus', // @todo move to viewport @todo delete
@@ -58,6 +60,7 @@ Ext.application({
 		// set listener to change event of history token
 		Ext.History.on('change', me.historyChange, me);
 	},
+	//edit 2 kaktus
 	initDispatch: function() {
 		var me = this,
 		token = Ext.History.getToken();
@@ -72,6 +75,7 @@ Ext.application({
 			me.dispatch(route);
 		}
 	},
+	// edit 1 kaktus
 	dispatch: function(config) {
 		var me = this;
 		// get the specific controller
@@ -88,7 +92,15 @@ Ext.application({
 			controller[config.action]();
 		};
 		// check if application was launched before
+		// edit 4 kaktus
+		// edit 4 kaktus
+		// edit 4 kaktus
+		// edit 4 kaktus
+		// edit 4 kaktus
+		// edit 4 kaktus
 		// this determines if the controller was loaded while running the app
+		//  kaktus
+		// kaktus
 		if(me.launched) {
 			// if the application was launched, call the onLaunch manually
 			controller.onLaunch();
@@ -96,6 +108,9 @@ Ext.application({
 	},
 	getViewport: function() {
 		return Ext.getCmp('app-viewport');
+		// kaktus
+		// kaktus// kaktus
+		// kaktus// kaktus// kaktus// kaktus// kaktus
 	},
 	initializeUtils: function() {
 		Ext.apply(Util, {
