@@ -27,6 +27,7 @@ Ext.Ajax.defaultHeaders = {
 // comment for task-3
 // comment for task-4-ab
 // comment for task-5-ab
+// comment for task-6-ab
 Ext.application({
 	name: 'APP',
 	appFolder: '/js/main/app',
